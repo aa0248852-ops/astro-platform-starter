@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بطاقات الهدايا المجانية - Free Gift Card Rewards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6e48aa, #9d50bb);
+            --button-gradient: linear-gradient(45deg, #FF6B35, #FF8E53);
+            --amazon-color: #FF9900;
+            --google-color: #4285F4;
+            --itunes-color: #FB5BC5;
+            --netflix-color: #E50914;
+            --playstation-color: #003087;
+            --xbox-color: #107C10;
+            --steam-color: #171a21;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Language Switcher */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: #6e48aa;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 0 40px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+        
+        /* Steps Section */
+        .steps-section {
+            background: white;
+            border-radius: 25px;
+            padding: 60px 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #333;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .step-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .step h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .step p {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        /* Cards Section */
+        .cards-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card-item {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .amazon { background: var(--amazon-color); }
+        .google { background: var(--google-color); }
+        .itunes { background: var(--itunes-color); }
+        .netflix { background: var(--netflix-color); }
+        .playstation { background: var(--playstation-color); }
+        .xbox { background: var(--xbox-color); }
+        .steam { background: var(--steam-color); }
+        
+        .card-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .card-item p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .get-btn {
+            background: var(--button-gradient);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+        
+        .get-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        /* Share Section */
+        .share-section {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin: 50px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            padding: 14px 26px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .facebook {
+            background: #3b5998;
+            color: white;
+        }
+        
+        .x {
+            background: #000000;
+            color: white;
+        }
+        
+        .instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+        
+        .whatsapp {
+            background: #25d366;
+            color: white;
+        }
+        
+        .telegram {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #333;
+            color: #aaa;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+            }
+            
+            .share-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .language-switcher {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Protection */
+        .no-copy {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .protection-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10000;
+            display: none;
+            text-align: center;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #eee;
+            border-radius: 12px;
+            margin: 30px 0;
+            overflow: hidden;
+            height: 40px;
+            border: 1px solid #ddd;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--button-gradient);
+            border-radius: 12px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+    <div class="protection-message" id="protectionMessage"></div>
+    
+    <div class="header">
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="ar">العربية</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+        
+        <h1 class="lang no-copy" data-key="header">🎉 بطاقات الهدايا المجانية 🎉</h1>
+        <p class="lang no-copy" data-key="subheader">اختر بطاقتك المفضلة وابدأ رحلتك نحو المكافآت!</p>
+    </div>
+    
+    <div class="container">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title lang no-copy" data-key="title">مرحبًا بك في مكافآت بطاقات الهدايا المجانية!</h1>
+                <p class="hero-subtitle lang no-copy" data-key="subtitle">إليك كيف تعمل: اختر بطاقة الهدية التي تريدها. لدينا Amazon، Google Play، iTunes، Netflix، PlayStation، Xbox، وحتى Steam!</p>
+            </div>
+        </section>
+        
+        <section class="steps-section">
+            <h2 class="section-title lang no-copy" data-key="stepsTitle">كيفية الحصول على بطاقتك المجانية</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">💳</div>
+                    <h3><span class="step-number">1</span> <span class="lang" data-key="step1Title">اختر بطاقتك</span></h3>
+                    <p class="lang" data-key="step1Desc">اختر بطاقة الهدية التي تريدها من مجموعتنا المتنوعة</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">🖱️</div>
+                    <h3><span class="step-number">2</span> <span class="lang" data-key="step2Title">انقر على "احصل عليها"</span></h3>
+                    <p class="lang" data-key="step2Desc">انقر على زر "احصل عليها" أسفل البطاقة المفضلة لديك</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">📝</div>
+                    <h3><span class="step-number">3</span> <span class="lang" data-key="step3Title">سجل بياناتك</span></h3>
+                    <p class="lang" data-key="step3Desc">سيتم توجيهك إلى صفحة تسجيل سريعة لإدخال بريدك الإلكتروني أو رقم هاتفك</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">✅</div>
+                    <h3><span class="step-number">4</span> <span class="lang" data-key="step4Title">اكمل التسجيل</span></h3>
+                    <p class="lang" data-key="step4Desc">قم بتأكيد بياناتك لإكمال عملية التسجيل</p>
+                </div>
+            </div>
+            
+            <p class="lang no-copy" data-key="stepsConclusion">هذا كل شيء! 🚀 لقد دخلت الآن لتحصل على بطاقة الهدية الخاصة بك. لا تنتظر - اختر بطاقتك الآن وحظًا سعيدًا! 💳✨</p>
+        </section>
+        
+        <section class="cards-section">
+            <h2 class="section-title lang no-copy" data-key="cardsTitle">اختر بطاقتك المفضلة</h2>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">0/7</div>
+            </div>
+            
+            <p class="lang no-copy" data-key="cardsCount">لقد اطلعت على <span id="cardsCount">0</span> من البطاقات</p>
+            
+            <div class="cards-grid">
+                <div class="card-item" data-card="amazon">
+                    <div class="card-icon amazon">
+                        <i class="fab fa-amazon"></i>
+                    </div>
+                    <h3 class="lang" data-key="amazonTitle">Amazon</h3>
+                    <p class="lang" data-key="amazonDesc">احصل على بطاقة هدايا Amazon لشراء أي شيء تريده</p>
+                    <button class="get-btn lang" data-key="getButton">احصل عليها</button>
+                </div>
+                
+                <div class="card-item" data-card="google">
+                    <div class="card-icon google">
+                        <i class="fab fa-google-play"></i>
+                    </div>
+                    <h3 class="lang" data-key="googleTitle">Google Play</h3>
+                    <p class="lang" data-key="googleDesc">احصل على بطاقة Google Play للتطبيقات والألعاب والمزيد</p>
+                    <button class="get-btn lang" data-key="getButton">احصل عليها</button>
+                </div>
+                
+                <div class="card-item" data-card="itunes">
+                    <div class="card-icon itunes">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3 class="lang" data-key="itunesTitle">iTunes</h3>
+                    <p class="lang" data-key="itunesDesc">احصل على بطاقة iTunes للموسيقى والأفلام والتطبيقات</p>
+                    <button class="get-btn lang" data-key="getButton">احصل عليها</button>
+                </div>
+                
+                <div class="card-item" data-card="netflix">
+                    <div class="card-icon netflix">
+                        <i class="fab fa-netflix"></i>
+                    </div>
+                    <h3 class="lang" data-key="netflixTitle">Netflix</h3>
+                    <p class="lang" data-key="netflixDesc">احصل على بطاقة Netflix للاستمتاع بمشاهدة الأفلام والمسلسلات</p>
+                    <button class="get-btn lang" data-key="getButton">احصل عليها</button>
+                </div>
+                
+                <div class="card-item" data-card="playstation">
+                    <div class="card-icon playstation">
+                        <i class="fab fa-playstation"></i>
+                    </div>
+                    <h3 class="lang" data-key="playstationTitle">PlayStation</h3>
+                    <p class="lang" data-key="playstationDesc">احصل على بطاقة PlayStation للألعاب والمحتوى الرقمي</p>
+                    <button class="get-btn lang" data-key="getButton">احصل عليها</button>
+                </div>
+                
+                <div class="card-item" data-card="xbox">
+                    <div class="card-icon xbox">
+                        <i class="fab fa-xbox"></i>
+                    </div>
+                    <h3 class="lang" data-key="xboxTitle">Xbox</h3>
+                    <p class="lang" data-key="xboxDesc">احصل على بطاقة Xbox للألعاب والاشتراكات والمزيد</p>
+                    <button class="get-btn lang" data-key="getButton">احصل عليها</button>
+                </div>
+                
+                <div class="card-item" data-card="steam">
+                    <div class="card-icon steam">
+                        <i class="fab fa-steam"></i>
+                    </div>
+                    <h3 class="lang" data-key="steamTitle">Steam</h3>
+                    <p class="lang" data-key="steamDesc">احصل على بطاقة Steam لألعاب الكمبيوتر والمحتوى الرقمي</p>
+                    <button class="get-btn lang" data-key="getButton">احصل عليها</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="share-section">
+            <h2 class="section-title lang no-copy" data-key="shareTitle">شارك مع أصدقائك!</h2>
+            <p class="lang no-copy" data-key="shareDesc">شارك هذه الفرصة الرائعة مع أصدقائك ليزيدوا فرصهم في الفوز ببطاقات الهدايا المجانية!</p>
+            
+            <div class="share-buttons">
+                <button class="share-btn facebook" data-platform="facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span class="lang" data-key="shareFacebook">فيسبوك</span>
+                </button>
+                <button class="share-btn x" data-platform="x">
+                    <i class="fab fa-x-twitter"></i>
+                    <span class="lang" data-key="shareX">X</span>
+                </button>
+                <button class="share-btn instagram" data-platform="instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span class="lang" data-key="shareInstagram">إنستقرام</span>
+                </button>
+                <button class="share-btn whatsapp" data-platform="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="lang" data-key="shareWhatsapp">واتساب</span>
+                </button>
+                <button class="share-btn telegram" data-platform="telegram">
+                    <i class="fab fa-telegram"></i>
+                    <span class="lang" data-key="shareTelegram">تيليجرام</span>
+                </button>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#" class="lang" data-key="termsLink">الشروط والأحكام</a>
+            <a href="#" class="lang" data-key="privacyLink">سياسة الخصوصية</a>
+            <a href="#" class="lang" data-key="contactLink">اتصل بنا</a>
+        </div>
+        <p class="lang no-copy" data-key="copyright">© 2023 جميع الحقوق محفوظة. هذا العرض يخضع للشروط والأحكام.</p>
+    </footer>
+
+    <script>
+        // ==============================================
+        // نظام الحماية
+        // ==============================================
+        function disableKeys(e) {
+            if (
+                e.keyCode === 123 || // F12
+                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+                (e.ctrlKey && e.shiftKey && e.keyCode === 67) || // Ctrl+Shift+C
+                (e.ctrlKey && e.keyCode === 85) // Ctrl+U
+            ) {
+                showProtectionMessage("عذراً، هذا الإجراء غير مسموح به");
+                return false;
+            }
+            return true;
+        }
+        
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showProtectionMessage("عذراً، لا يمكنك استخدام زر الماوس الأيمن هنا");
+            return false;
+        });
+        
+        // عرض رسالة الحماية
+        function showProtectionMessage(message) {
+            const messageEl = document.getElementById('protectionMessage');
+            messageEl.textContent = message;
+            messageEl.style.display = 'block';
+            
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 3000);
+        }
+        
+        // ==============================================
+        // نظام التعددية اللغوية
+        // ==============================================
+        const translations = {
+            ar: {
+                header: "🎉 بطاقات الهدايا المجانية 🎉",
+                subheader: "اختر بطاقتك المفضلة وابدأ رحلتك نحو المكافآت!",
+                title: "مرحبًا بك في مكافآت بطاقات الهدايا المجانية!",
+                subtitle: "إليك كيف تعمل: اختر بطاقة الهدية التي تريدها. لدينا Amazon، Google Play، iTunes، Netflix، PlayStation، Xbox، وحتى Steam!",
+                stepsTitle: "كيفية الحصول على بطاقتك المجانية",
+                step1Title: "اختر بطاقتك",
+                step1Desc: "اختر بطاقة الهدية التي تريدها من مجموعتنا المتنوعة",
+                step2Title: "انقر على 'احصل عليها'",
+                step2Desc: "انقر على زر 'احصل عليها' أسفل البطاقة المفضلة لديك",
+                step3Title: "سجل بياناتك",
+                step3Desc: "سيتم توجيهك إلى صفحة تسجيل سريعة لإدخال بريدك الإلكتروني أو رقم هاتفك",
+                step4Title: "اكمل التسجيل",
+                step4Desc: "قم بتأكيد بياناتك لإكمال عملية التسجيل",
+                stepsConclusion: "هذا كل شيء! 🚀 لقد دخلت الآن لتحصل على بطاقة الهدية الخاصة بك. لا تنتظر - اختر بطاقتك الآن وحظًا سعيدًا! 💳✨",
+                cardsTitle: "اختر بطاقتك المفضلة",
+                cardsCount: "لقد اطلعت على",
+                amazonTitle: "Amazon",
+                amazonDesc: "احصل على بطاقة هدايا Amazon لشراء أي شيء تريده",
+                googleTitle: "Google Play",
+                googleDesc: "احصل على بطاقة Google Play للتطبيقات والألعاب والمزيد",
+                itunesTitle: "iTunes",
+                itunesDesc: "احصل على بطاقة iTunes للموسيقى والأفلام والتطبيقات",
+                netflixTitle: "Netflix",
+                netflixDesc: "احصل على بطاقة Netflix للاستمتاع بمشاهدة الأفلام والمسلسلات",
+                playstationTitle: "PlayStation",
+                playstationDesc: "احصل على بطاقة PlayStation للألعاب والمحتوى الرقمي",
+                xboxTitle: "Xbox",
+                xboxDesc: "احصل على بطاقة Xbox للألعاب والاشتراكات والمزيد",
+                steamTitle: "Steam",
+                steamDesc: "احصل على بطاقة Steam لألعاب الكمبيوتر والمحتوى الرقمي",
+                getButton: "احصل عليها",
+                shareTitle: "شارك مع أصدقائك!",
+                shareDesc: "شارك هذه الفرصة الرائعة مع أصدقائك ليزيدوا فرصهم في الفوز ببطاقات الهدايا المجانية!",
+                shareFacebook: "فيسبوك",
+                shareX: "X",
+                shareInstagram: "إنستقرام",
+                shareWhatsapp: "واتساب",
+                shareTelegram: "تيليجرام",
+                termsLink: "الشروط والأحكام",
+                privacyLink: "سياسة الخصوصية",
+                contactLink: "اتصل بنا",
+                copyright: "© 2023 جميع الحقوق محفوظة. هذا العرض يخضع للشروط والأحكام.",
+                shareMessage: "🎉 اكتشف مكافآت بطاقات الهدايا المجانية! 🎉\n\nيمكنك الفوز ببطاقات هدايا من Amazon، Google Play، iTunes، Netflix، PlayStation، Xbox، وSteam!\n\nانضم الآن: https://giftcards-rewards.com\n\n#بطاقات_هدايا #مكافآت #مجاني"
+            },
+            en: {
+                header: "🎉 Free Gift Card Rewards 🎉",
+                subheader: "Choose your favorite card and start your journey to rewards!",
+                title: "Hey there! 🎉 Welcome to the Free Gift Card Rewards page.",
+                subtitle: "Here's how it works: choose the gift card you want. We've got Amazon, Google Play, iTunes, Netflix, PlayStation, Xbox, even Steam!",
+                stepsTitle: "How to Get Your Free Card",
+                step1Title: "Choose Your Card",
+                step1Desc: "Choose the gift card you want from our diverse collection",
+                step2Title: "Click 'Get This'",
+                step2Desc: "Just click the 'Get This' button under your favorite card",
+                step3Title: "Register Your Details",
+                step3Desc: "You'll be redirected to a quick registration page to enter your email or phone number",
+                step4Title: "Complete Registration",
+                step4Desc: "Confirm your details to complete registration",
+                stepsConclusion: "That's it! 🚀 You're now entered to claim your gift card. Don't wait — pick your card now and good luck! 💳✨",
+                cardsTitle: "Choose Your Favorite Card",
+                cardsCount: "You've viewed",
+                amazonTitle: "Amazon",
+                amazonDesc: "Get an Amazon gift card to buy anything you want",
+                googleTitle: "Google Play",
+                googleDesc: "Get a Google Play card for apps, games, and more",
+                itunesTitle: "iTunes",
+                itunesDesc: "Get an iTunes card for music, movies, and apps",
+                netflixTitle: "Netflix",
+                netflixDesc: "Get a Netflix card to enjoy movies and series",
+                playstationTitle: "PlayStation",
+                playstationDesc: "Get a PlayStation card for games and digital content",
+                xboxTitle: "Xbox",
+                xboxDesc: "Get an Xbox card for games, subscriptions, and more",
+                steamTitle: "Steam",
+                steamDesc: "Get a Steam card for PC games and digital content",
+                getButton: "Get This",
+                shareTitle: "Share with Your Friends!",
+                shareDesc: "Share this amazing opportunity with your friends to increase their chances of winning free gift cards!",
+                shareFacebook: "Facebook",
+                shareX: "X",
+                shareInstagram: "Instagram",
+                shareWhatsapp: "WhatsApp",
+                shareTelegram: "Telegram",
+                termsLink: "Terms & Conditions",
+                privacyLink: "Privacy Policy",
+                contactLink: "Contact Us",
+                copyright: "© 2023 All Rights Reserved. This offer is subject to terms and conditions.",
+                shareMessage: "🎉 Discover Free Gift Card Rewards! 🎉\n\nYou can win gift cards from Amazon, Google Play, iTunes, Netflix, PlayStation, Xbox, and Steam!\n\nJoin now: https://giftcards-rewards.com\n\n#GiftCards #Rewards #Free"
+            }
+        };
+
+        // الكشف عن لغة المتصفح التلقائية
+        const userLang = navigator.language || navigator.userLanguage;
+        const defaultLang = userLang.startsWith('ar') ? 'ar' : 'en';
+        
+        // عناصر الترجمة
+        const langElements = document.querySelectorAll('.lang');
+        const langButtons = document.querySelectorAll('.lang-btn');
+        
+        // تطبيق الترجمة
+        function applyLanguage(lang) {
+            // تحديث النصوص
+            langElements.forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // تحديد الزر النشط
+            langButtons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+                    document.documentElement.setAttribute('lang', lang);
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // تحديث نص عدد البطاقات
+            updateCardsText();
+        }
+        
+        // أحداث أزرار تغيير اللغة
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                applyLanguage(lang);
+            });
+        });
+        
+        // تطبيق اللغة الافتراضية عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage(defaultLang);
+        });
+        
+        // ==============================================
+        // نظام تتبع البطاقات
+        // ==============================================
+        let viewedCards = 0;
+        const totalCards = 7;
+        const progressBar = document.getElementById('progressBar');
+        const cardsCountElement = document.getElementById('cardsCount');
+        const cardItems = document.querySelectorAll('.card-item');
+        
+        // تحديث نص عدد البطاقات
+        function updateCardsText() {
+            const currentLang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
+            cardsCountElement.textContent = ` ${viewedCards} `;
+            
+            if (currentLang === 'ar') {
+                document.querySelector('[data-key="cardsCount"]').innerHTML = `لقد اطلعت على <span id="cardsCount">${viewedCards}</span> من البطاقات`;
+            } else {
+                document.querySelector('[data-key="cardsCount"]').innerHTML = `You've viewed <span id="cardsCount">${viewedCards}</span> cards`;
+            }
+            
+            // تحديث شريط التقدم
+            const progressPercentage = Math.min(100, (viewedCards / totalCards) * 100);
+            progressBar.style.width = `${progressPercentage}%`;
+            progressBar.textContent = `${viewedCards}/${totalCards}`;
+        }
+        
+        // تتبع عرض البطاقات
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    if (!card.classList.contains('viewed')) {
+                        card.classList.add('viewed');
+                        viewedCards++;
+                        updateCardsText();
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        // مراقبة جميع البطاقات
+        cardItems.forEach(card => {
+            observer.observe(card);
+        });
+        
+        // أحداث أزرار "احصل عليها"
+        const getButtons = document.querySelectorAll('.get-btn');
+        getButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const currentLang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
+                const cardItem = this.closest('.card-item');
+                const cardType = cardItem.getAttribute('data-card');
+                
+                alert(currentLang === 'ar' 
+                    ? `سيتم توجيهك إلى صفحة التسجيل للحصول على بطاقة ${cardType}` 
+                    : `You will be redirected to the registration page for ${cardType} card`);
+                
+                // في التطبيق الحقيقي، هنا سيتم التوجيه إلى صفحة التسجيل
+                // window.location.href = `https://example.com/register?card=${cardType}`;
+            });
+        });
+        
+        // ==============================================
+        // نظام المشاركة الفعلي
+        // ==============================================
+        const shareButtons = document.querySelectorAll('.share-btn');
+        
+        // وظائف المشاركة الفعلية على وسائل التواصل الاجتماعي
+        shareButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const platform = button.getAttribute('data-platform');
